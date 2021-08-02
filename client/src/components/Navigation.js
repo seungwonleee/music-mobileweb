@@ -1,6 +1,14 @@
-import React, { useState, useCallback } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import AlbumIcon from '@material-ui/icons/Album';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -33,13 +41,66 @@ const Nav = styled.div`
   cursor: pointer;
 `;
 
-const Navigation = () => {
-  const [menuState, setMenuState] = useState(false);
+const useStyles = makeStyles({
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+});
 
-  const ToggleMenu = useCallback(() => {
-    setMenuState(!menuState);
-  }, [menuState]);
-  console.log('현재 메뉴 상태 ==> ', menuState);
+const Navigation = () => {
+  const classes = useStyles();
+  const [state, setState] = useState({
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <div
+      className={clsx(classes.list)}
+      role="navigation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        <Link to="/" style={{ textDecoration: 'none', color: '#000000' }}>
+          <ListItem button key="Classic Music">
+            <ListItemText primary="Classic Music" />
+          </ListItem>
+        </Link>
+      </List>
+      <Divider />
+      <List>
+        {[
+          { text: 'About', route: '/About' },
+          { text: 'Upload', route: '/Upload' },
+        ].map((data, index) => (
+          <Link
+            to={data.route}
+            key={data.text}
+            style={{ textDecoration: 'none', color: '#000000' }}
+          >
+            <ListItem button key={data.text}>
+              <ListItemText primary={data.text} />
+            </ListItem>
+          </Link>
+        ))}
+      </List>
+    </div>
+  );
+
   return (
     <NavWrapper>
       <Link to="/">
@@ -48,9 +109,16 @@ const Navigation = () => {
           <h1>Classic Music</h1>
         </Logo>
       </Link>
-      <Nav onClick={ToggleMenu}>
+      <Nav onClick={toggleDrawer('right', true)}>
         <MenuIcon />
       </Nav>
+      <Drawer
+        anchor={'right'}
+        open={state['right']}
+        onClose={toggleDrawer('right', false)}
+      >
+        {list('right')}
+      </Drawer>
     </NavWrapper>
   );
 };
