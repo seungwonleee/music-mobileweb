@@ -1,27 +1,18 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 const Player = () => {
-  const [currentTime, setCurrentTime] = useState(0);
-
-  //TODO 재생 시간 가져오기
-  const getCurrentTime = useCallback(
-    (e) => {
-      let time = e.target.currentTime;
-
-      setCurrentTime(time);
-    },
-    [currentTime]
-  );
+  // 현재 재생 중 음악
+  const nowPlaying = useSelector((state) => state.music.playNow.musicURL);
 
   return (
     <AudioPlayer
       autoPlay
-      src="https://music-mobileweb.s3.ap-northeast-2.amazonaws.com/1.m4a"
+      src={nowPlaying}
       onPlay={(e) => console.log('onPlay')}
       // other props here
-      onPlaying={(e) => {}}
     />
   );
 };

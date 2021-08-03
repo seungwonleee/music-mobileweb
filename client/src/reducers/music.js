@@ -49,7 +49,7 @@ const music = (state = initialState, action) =>
         draft.loadMusicListLoading = false;
         draft.loadMusicListDone = true;
         draft.loadMusicListError = null;
-        draft.musicList = action.data.musicList;
+        draft.musicList = action.data; //음악 전체 목록
         break;
       case LOAD_MUSIC_LIST_FAILURE:
         draft.loadMusicListLoading = false;

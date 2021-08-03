@@ -11,7 +11,7 @@ import {
 
 // 음악 목록 호출
 function loadMusicListAPI() {
-  return axios.get('/');
+  return axios.get('/music');
 }
 
 function* loadMusicList() {

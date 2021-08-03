@@ -59,8 +59,9 @@ const GridCard = ({ data }) => {
     dispatch({
       type: PLAY_MUSIC,
       data: {
-        musicId: data.musicId,
+        musicId: data.id,
         playTime: 0,
+        musicURL: data.musicFile,
       },
     });
   }, []);
@@ -71,8 +72,8 @@ const GridCard = ({ data }) => {
         <CardMedia>
           <div style={{ position: 'relative' }}>
             {/* cover image */}
-            <Link to={`/music/${data.musicId}`}>
-              <Image src={data.image} />
+            <Link to={`/music/${data.id}`}>
+              <Image src={data.album} />
             </Link>
             {/* play button */}
             <IconButton
@@ -110,10 +111,8 @@ const GridCard = ({ data }) => {
           >
             <Title>{data.title}</Title>
 
-            <Text>{data.artist}</Text>
-            <Text>
-              {moment(data.detail.releaseDate).format('L').slice(0, -1)}
-            </Text>
+            <Text>{data.author}</Text>
+            <Text>{moment(data.releaseDate).format('L').slice(0, -1)}</Text>
           </Typography>
           {/* view more */}
           <CardActions

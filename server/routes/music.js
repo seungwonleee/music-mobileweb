@@ -4,8 +4,19 @@ const { Music } = require('../models');
 
 const { uploadMusic } = require('../middlewares/upload');
 
-router.get('/', (req, res) => {
-  res.send('ok');
+router.get('/', async (req, res, next) => {
+  try {
+    const Musics = await Music.findAll({
+      where: {},
+      order: [
+        ['createdAt', 'DESC'], //최신 게시글부터
+      ],
+    });
+    res.status(200).json(Musics);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
 });
 
 // 음악 업로드
@@ -24,8 +35,6 @@ router.post(
   async (req, res, next) => {
     // console.log('body data ===>', req.body); body객체
     // console.log('save data ===>', req.files); s3파일
-    console.log('album ====>', req.files.album[0].location);
-    console.log('musicFile ====>', req.files.musicFile[0].location);
 
     const albumS3 = req.files.album[0].location;
     const musicFileS3 = req.files.musicFile[0].location;
