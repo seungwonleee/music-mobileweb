@@ -4,6 +4,15 @@ const helmet = require('helmet');
 const cors = require('cors');
 const musicRouter = require('./routes/music');
 
+const db = require('./models');
+
+db.sequelize
+  .sync()
+  .then(() => {
+    console.log('db 연결 성공');
+  })
+  .catch(console.error);
+
 app.use(helmet());
 
 app.use(
