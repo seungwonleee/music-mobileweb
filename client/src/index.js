@@ -2,15 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './sagas';
+
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware();
 
 const reduxDevTools =
-  process.env.NODE_ENV === 'production' ? null : composeWithDevTools();
+  process.env.NODE_ENV === 'production'
+    ? null
+    : composeWithDevTools(applyMiddleware(sagaMiddleware));
 
 const store = createStore(rootReducer, reduxDevTools);
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <React.StrictMode>

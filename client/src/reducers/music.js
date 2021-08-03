@@ -7,12 +7,13 @@ export const initialState = {
     musicId: null,
     playTime: null,
   },
+  musicList: [],
   loadMusicListLoading: false,
   loadMusicListDone: false,
   loadMusicListError: null,
-  loadMusicLoading: false,
-  loadMusicDone: false,
-  loadMusicError: null,
+  uploadMusicLoading: false,
+  uploadMusicDone: false,
+  uploadMusicError: null,
 };
 
 export const PLAY_MUSIC = 'PLAY_MUSIC';
@@ -22,9 +23,9 @@ export const LOAD_MUSIC_LIST_REQUEST = 'LOAD_MUSIC_LIST_REQUEST';
 export const LOAD_MUSIC_LIST_SUCCESS = 'LOAD_MUSIC_LIST_SUCCESS';
 export const LOAD_MUSIC_LIST_FAILURE = 'LOAD_MUSIC_LIST_FAILURE';
 
-export const LOAD_MUSIC_REQUEST = 'LOAD_MUSIC_REQUEST';
-export const LOAD_MUSIC_SUCCESS = 'LOAD_MUSIC_SUCCESS';
-export const LOAD_MUSIC_FAILURE = 'LOAD_MUSIC_FAILURE';
+export const UPLOAD_MUSIC_REQUEST = 'UPLOAD_MUSIC_REQUEST';
+export const UPLOAD_MUSIC_SUCCESS = 'UPLOAD_MUSIC_SUCCESS';
+export const UPLOAD_MUSIC_FAILURE = 'UPLOAD_MUSIC_FAILURE';
 
 const music = (state = initialState, action) =>
   produce(state, (draft) => {
@@ -39,20 +40,36 @@ const music = (state = initialState, action) =>
         draft.stop = true;
         draft.playNow = action.data; //멈춘 음악 및 시간
         break;
-      case LOAD_MUSIC_REQUEST:
-        draft.loadMusicLoading = true;
-        draft.loadMusicDone = false;
-        draft.loadMusicError = null;
+      case LOAD_MUSIC_LIST_REQUEST:
+        draft.loadMusicListLoading = true;
+        draft.loadMusicListDone = false;
+        draft.loadMusicListError = null;
         break;
-      case LOAD_MUSIC_SUCCESS:
-        draft.loadMusicLoading = false;
-        draft.loadMusicDone = true;
-        draft.loadMusicError = null;
+      case LOAD_MUSIC_LIST_SUCCESS:
+        draft.loadMusicListLoading = false;
+        draft.loadMusicListDone = true;
+        draft.loadMusicListError = null;
+        draft.musicList = action.data.musicList;
         break;
-      case LOAD_MUSIC_FAILURE:
-        draft.loadMusicLoading = false;
-        draft.loadMusicDone = false;
-        draft.loadMusicError = null;
+      case LOAD_MUSIC_LIST_FAILURE:
+        draft.loadMusicListLoading = false;
+        draft.loadMusicListDone = false;
+        draft.loadMusicListError = null;
+        break;
+      case UPLOAD_MUSIC_REQUEST:
+        draft.uploadMusicLoading = true;
+        draft.uploadMusicDone = false;
+        draft.uploadMusicError = null;
+        break;
+      case UPLOAD_MUSIC_SUCCESS:
+        draft.uploadMusicLoading = false;
+        draft.uploadMusicDone = true;
+        draft.uploadMusicError = null;
+        break;
+      case UPLOAD_MUSIC_FAILURE:
+        draft.uploadMusicLoading = false;
+        draft.uploadMusicDone = false;
+        draft.uploadMusicError = null;
         break;
       default:
         break;
