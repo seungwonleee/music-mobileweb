@@ -12,27 +12,32 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 // styled-components
 const Image = styled.img`
   width: 100%;
-  height: 100%;
+  height: 30vh;
+  object-fit: cover;
 `;
 
 const Title = styled.p`
   font-size: 16px;
-  width: 30vw;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Text = styled.p`
   font-size: 0.8rem;
   width: 30vw;
+`;
+
+const Info = styled(Typography)`
+  overflow: hidden;
+  padding-left: 0.5rem;
 `;
 
 // Material UI CSS
@@ -95,41 +100,16 @@ const GridCard = ({ data }) => {
         <CardContent
           style={{
             whiteSpace: 'nowrap',
-            wordBreak: 'break-all',
-            wordWrap: 'break-word',
-            position: 'relative',
             padding: 0,
-            display: 'flex',
-            justifyContent: 'space-between',
           }}
         >
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            component="div"
-            style={{ overflow: 'hidden', paddingLeft: '0.5rem' }}
-          >
+          <Info variant="body2" color="textSecondary" component="div">
             <Title>{data.title}</Title>
 
             <Text>{data.author}</Text>
             {/* <Text>{moment(data.releaseDate).format('L').slice(0, -1)}</Text>    */}
             <Text>{moment(data.releaseDate).format('YYYY')}</Text>
-          </Typography>
-          {/* view more */}
-          <CardActions
-            style={{
-              padding: 0,
-              position: 'absolute',
-              top: 12,
-              right: 0,
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <IconButton aria-label="more" style={{ padding: 0 }}>
-              <MoreVertIcon />
-            </IconButton>
-          </CardActions>
+          </Info>
         </CardContent>
       </Card>
     </Grid>
