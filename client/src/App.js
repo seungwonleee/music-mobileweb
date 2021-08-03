@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import Player from './components/Player';
 import About from './components/About';
 import MusicDetailPage from './components/MusicDetailPage';
+import Upload from './components/Upload';
 
 import styled from 'styled-components';
 import GlobalStyle from './Globalstyle';
@@ -29,6 +30,7 @@ function App() {
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/music/:musicId" component={MusicDetailPage} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/upload" component={Upload} />
       </Switch>
       {/* Audio Player */}
       {nowPlaying && (

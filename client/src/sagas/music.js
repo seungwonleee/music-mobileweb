@@ -17,7 +17,7 @@ function loadMusicListAPI() {
 function* loadMusicList() {
   try {
     const result = yield call(loadMusicListAPI);
-    console.log('result ===>', result.data);
+
     yield put({
       type: LOAD_MUSIC_LIST_SUCCESS,
       data: result.data,
@@ -33,17 +33,17 @@ function* loadMusicList() {
 
 // 음악 업로드
 function uploadMusicAPI(data) {
-  return axios.post('/', data);
+  return axios.post('/music/upload', data);
 }
 
 function* uploadMusic(action) {
   try {
     const result = yield call(uploadMusicAPI, action.data);
-
     yield put({
       type: UPLOAD_MUSIC_SUCCESS,
       data: result.data,
     });
+    alert('업로드에 성공했습니다.');
   } catch (err) {
     console.error(err);
     yield put({

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const helmet = require('helmet');
 const cors = require('cors');
+const musicRouter = require('./routes/music');
 
 app.use(helmet());
 
@@ -10,6 +11,9 @@ app.use(
     origin: 'http://localhost:3000',
   })
 );
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const datas = [
   {
@@ -78,6 +82,8 @@ const datas = [
 app.get('/', (req, res) => {
   res.status(200).json({ musicList: datas });
 });
+
+app.use('/music', musicRouter);
 
 const port = 3065;
 app.listen(port, () => {
