@@ -16,8 +16,8 @@ app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ limit: '20mb', extended: true }));
 
 // test router
-app.get('/', (req, res) => {
-  res.status(200).json({ musicList: datas });
+app.get('/test', (req, res) => {
+  res.status(200).json({ test: 'success' });
 });
 
 app.use('/music', musicRouter);
