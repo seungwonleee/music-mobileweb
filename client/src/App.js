@@ -13,7 +13,7 @@ import styled from 'styled-components';
 import GlobalStyle from './Globalstyle';
 
 const PlayerWrapper = styled.div`
-  position: absolute;
+  position: sticky;
   bottom: 0;
   z-index: 30;
   width: 100%;

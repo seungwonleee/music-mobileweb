@@ -70,50 +70,52 @@ const Upload = () => {
   );
 
   return (
-    <form encType="multipart/form-data">
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <label>커버 사진</label>
-        <input
-          type="file"
-          name="album"
-          onChange={handleChangeFile}
-          multiple={false}
-          accept="image/*"
-        />
+    <div style={{ height: '100vh' }}>
+      <form encType="multipart/form-data">
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <label>커버 사진</label>
+          <input
+            type="file"
+            name="album"
+            onChange={handleChangeFile}
+            multiple={false}
+            accept="image/*"
+          />
 
-        <br />
-        <label>음악 파일</label>
-        <input
-          type="file"
-          name="musicFile"
-          onChange={handleChangeFile}
-          multiple={false}
-          accept="audio/*"
-        />
-        <br />
+          <br />
+          <label>음악 파일</label>
+          <input
+            type="file"
+            name="musicFile"
+            onChange={handleChangeFile}
+            multiple={false}
+            accept="audio/*"
+          />
+          <br />
 
-        <label>제목</label>
-        <input onChange={setTitle} value={title} />
-        <br />
-        <label>장르</label>
-        <input onChange={setGenre} value={genre} />
-        <br />
-        <label>저자</label>
-        <input onChange={setAuthor} value={author} />
-        <br />
-        <label>작곡가</label>
-        <input onChange={setComposer} value={composor} />
-        <br />
-        <label>기록된 해</label>
-        <input onChange={setReleaseDate} value={releaseDate} type="number" />
-        <br />
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <button style={{ width: '30%' }} onClick={handleSubmit}>
-          업로드
-        </button>
-      </div>
-    </form>
+          <label>제목</label>
+          <input onChange={setTitle} value={title} />
+          <br />
+          <label>장르</label>
+          <input onChange={setGenre} value={genre} />
+          <br />
+          <label>저자</label>
+          <input onChange={setAuthor} value={author} />
+          <br />
+          <label>작곡가</label>
+          <input onChange={setComposer} value={composor} />
+          <br />
+          <label>기록된 해</label>
+          <input onChange={setReleaseDate} value={releaseDate} type="number" />
+          <br />
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <button style={{ width: '30%' }} onClick={handleSubmit}>
+            업로드
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

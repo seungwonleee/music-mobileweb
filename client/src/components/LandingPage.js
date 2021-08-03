@@ -16,7 +16,7 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ height: '100vh' }}>
       <Grid container spacing={2}>
         {datas &&
           datas.map((data, index) => <GridCard key={data.title} data={data} />)}

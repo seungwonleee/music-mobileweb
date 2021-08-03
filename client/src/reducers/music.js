@@ -5,7 +5,7 @@ export const initialState = {
   stop: true,
   playNow: {
     musicId: null,
-    playTime: null,
+    musicURL: null,
   },
   musicList: [],
   loadMusicListLoading: false,

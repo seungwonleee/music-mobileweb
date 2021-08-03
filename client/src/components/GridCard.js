@@ -112,7 +112,8 @@ const GridCard = ({ data }) => {
             <Title>{data.title}</Title>
 
             <Text>{data.author}</Text>
-            <Text>{moment(data.releaseDate).format('L').slice(0, -1)}</Text>
+            {/* <Text>{moment(data.releaseDate).format('L').slice(0, -1)}</Text>    */}
+            <Text>{moment(data.releaseDate).format('YYYY')}</Text>
           </Typography>
           {/* view more */}
           <CardActions
