@@ -8,7 +8,7 @@ import { LOAD_MUSIC_LIST_REQUEST } from '../reducers/music';
 const LandingPage = () => {
   const dispatch = useDispatch();
   const datas = useSelector((state) => state.music.musicList);
-  console.log(datas);
+  // console.log(datas);
   useEffect(() => {
     dispatch({
       type: LOAD_MUSIC_LIST_REQUEST,

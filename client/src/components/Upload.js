@@ -29,16 +29,6 @@ const Upload = () => {
     (event) => {
       event.preventDefault();
 
-      // console.log({
-      //   album,
-      //   musicFile,
-      //   title,
-      //   genre,
-      //   author,
-      //   composor,
-      //   releaseDate,
-      // });
-
       if (
         album === '' ||
         musicFile === '' ||

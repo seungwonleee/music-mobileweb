@@ -58,7 +58,7 @@ const Td = styled.td`
 `;
 
 const CardContainer = styled.div`
-  padding-bottom: 2rem;
+  height: 100vh;
 `;
 
 const CardWrapper = styled.div`
@@ -92,7 +92,7 @@ const MusicDetailPage = () => {
   }, []);
 
   return (
-    <div style={{ margin: '0 auto' }}>
+    <div>
       <div style={{ textAlign: 'center' }}>
         <img src={result.album} alt="ablum" style={{ width: '60%' }} />
       </div>
@@ -121,6 +121,7 @@ const MusicDetailPage = () => {
           </tr>
         </Table>
       </div>
+
       <CardContainer>
         {filterdList.map((music) => (
           <CardWrapper key={music.title}>

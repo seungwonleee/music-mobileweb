@@ -65,7 +65,6 @@ const GridCard = ({ data }) => {
       type: PLAY_MUSIC,
       data: {
         musicId: data.id,
-        playTime: 0,
         musicURL: data.musicFile,
       },
     });

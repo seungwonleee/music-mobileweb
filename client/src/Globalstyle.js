@@ -10,8 +10,11 @@ const GlobalStyle = createGlobalStyle`
     /* font-size: 10px;
      */
     background: #FAFAFA;
-
+    height: 100%;
+    width: 100%;
   }
+
+
 `;
 
 export default GlobalStyle;
